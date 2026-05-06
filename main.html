@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kabana de Nature · Work in progress</title>
+  <meta name="description" content="Kabana de Nature — a serene retreat in Himachal Pradesh. Escape to pine-lined valleys, modern comfort, and warm hospitality. Book your stay or get in touch." />
+  <link rel="canonical" href="/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Kabana de Nature — A Hidden Sanctuary" />
+  <meta property="og:description" content="Escape to Kabana de Nature — a serene resort where nature meets modern comfort in Himachal Pradesh." />
+  <meta property="og:type" content="website" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "Kabana de Nature",
+    "description": "A serene resort retreat blending nature with modern comfort in Himachal Pradesh.",
+    "telephone": "+919350388959",
+    "email": "kdn@tripsntourism.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Village Kot, Rajgarh, Koti Mawga",
+      "addressLocality": "Rajgarh",
+      "addressRegion": "Himachal Pradesh",
+      "postalCode": "173101",
+      "addressCountry": "IN"
+    },
+    "url": "/",
+    "sameAs": ["https://www.instagram.com/kabana_de_nature/"]
+  }
+  </script>
+
+  <style>
+    :root{ --bg:#0b0b0b; --muted:rgba(255,255,255,.78); --accent:#ff3b30; --accent-2:#7b3fe4; --white:#fff }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Segoe UI,Roboto,Helvetica,Arial,Inter,sans-serif;color:var(--white);background:var(--bg);-webkit-font-smoothing:antialiased}
+
+    /* Transparent minimalist navbar */
+    .nav{position:fixed;left:0;right:0;top:0;display:flex;align-items:center;justify-content:space-between;padding:12px 28px;gap:16px;z-index:60;background:transparent;transition:background-color .24s ease,box-shadow .24s ease,backdrop-filter .24s ease,border-color .24s ease}
+    .nav.is-scrolled{background:rgba(0,0,0,.94);backdrop-filter:blur(16px);box-shadow:0 10px 30px rgba(0,0,0,.35);border-bottom:1px solid rgba(255,255,255,.08)}
+    .brand{display:flex;align-items:center;justify-content:flex-start;text-decoration:none}
+    .brand img{display:block;height:64px;width:auto;object-fit:contain}
+    .nav-links{margin-left:auto}
+    nav ul{display:flex;gap:18px;align-items:center;margin:0;padding:0;list-style:none}
+    nav a{color:var(--white);text-decoration:none;font-weight:600;opacity:.88;font-size:15px}
+    nav a:hover{opacity:1}
+    .book{padding:8px 18px;border-radius:999px;background:var(--accent);color:var(--white);font-weight:700;border:none;box-shadow:0 6px 18px rgba(255,59,48,0.12);transition:transform .16s ease}
+    .book:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(255,59,48,0.18)}
+
+    main{position:relative;z-index:20}
+    main::before{content:"";display:block;height:100vh}
+
+    /* Hero */
+    .hero{height:100vh;min-height:560px;display:grid;place-items:center;align-items:flex-start;justify-items:flex-start;position:fixed;top:0;left:0;right:0;width:100%;background-image:linear-gradient(180deg,rgba(0,0,0,.20),rgba(0,0,0,.48)),url('image.png');background-size:cover;background-position:center center;overflow:hidden;z-index:10}
+
+    /* Gallery Section */
+    .gallery-section{position:relative;z-index:20;background:var(--bg);padding:80px 28px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+    .gallery-container{max-width:1200px;margin:0 auto;width:100%}
+    .gallery-section h2{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Segoe UI,Roboto,Inter,system-ui,sans-serif;font-weight:800;font-size:clamp(32px,5vw,56px);margin:0 0 48px 0;color:var(--white);letter-spacing:-0.01em}
+    .swiper{width:100%}
+    .swiper-slide{display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.04);border-radius:12px;overflow:hidden;aspect-ratio:16/10;min-height:420px;max-height:540px}
+    .swiper-slide img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;cursor:pointer}
+    .swiper-slide:hover img{transform:scale(1.04)}
+    .swiper-button-next,.swiper-button-prev{color:var(--white);background:rgba(255,255,255,0.08);width:44px;height:44px;border-radius:50%;backdrop-filter:blur(10px);transition:background .2s ease;top:50%}
+    .lightbox-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.92);backdrop-filter:blur(18px);z-index:100}
+    .lightbox-overlay.is-open{display:flex}
+    .lightbox-content{position:relative;max-width:calc(100% - 96px);max-height:calc(100% - 96px);width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+    .lightbox-image{max-width:100%;max-height:100%;border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+    .lightbox-close,.lightbox-nav{position:absolute;display:grid;place-items:center;width:44px;height:44px;border:none;border-radius:50%;background:rgba(255,255,255,.08);color:var(--white);font-size:24px;cursor:pointer;backdrop-filter:blur(16px);transition:background .2s ease}
+    .lightbox-close:hover,.lightbox-nav:hover{background:rgba(255,255,255,.16)}
+    .lightbox-close{top:18px;right:18px}
+    .lightbox-prev{left:18px;top:50%;transform:translateY(-50%)}
+    .lightbox-next{right:18px;top:50%;transform:translateY(-50%)}
+    .swiper-button-next:hover,.swiper-button-prev:hover{background:rgba(255,255,255,0.14)}
+    .swiper-button-next::after,.swiper-button-prev::after{font-size:16px}
+    .swiper-pagination{bottom:0}
+    .swiper-pagination-bullet{background:rgba(255,255,255,0.5);width:8px;height:8px}
+    .swiper-pagination-bullet-active{background:var(--white)}
+
+    .hero::before{content:"";position:absolute;left:-6%;bottom:-10%;width:72%;height:82%;background:radial-gradient(circle at left bottom, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.82) 10%, rgba(0,0,0,0.7) 24%, rgba(0,0,0,0.45) 44%, rgba(0,0,0,0.18) 66%, transparent 86%);filter:blur(48px);transform:translateZ(0);z-index:24;pointer-events:none}
+    /* subtle global vignette to deepen corners */
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.06),rgba(0,0,0,0.18));z-index:22;pointer-events:none}
+    .hero .content{position:relative;z-index:30;max-width:1100px;padding:280px 48px 48px 48px;display:flex;flex-direction:column;gap:18px}
+    h1{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Segoe UI,Roboto,Inter,system-ui,sans-serif;font-weight:800;font-size:clamp(44px,9vw,96px);margin:0;line-height:1;color:var(--white);letter-spacing:-0.02em}
+    .blur-text{display:flex;flex-wrap:wrap;gap:0.24em;align-items:flex-end}
+    .blur-segment{display:inline-block;will-change:transform,filter,opacity;opacity:0;transform:translateY(-18px) scale(0.985);filter:blur(10px)}
+    .blur-segment.is-visible{animation:blurSegmentIn 1.6s cubic-bezier(.16,1,.3,1) forwards}
+    p.lead{margin:0;color:var(--muted);max-width:62ch;font-size:18px;line-height:1.6}
+    .ctas{margin-top:12px;display:flex;gap:12px;align-items:center}
+    .cta-primary{background:transparent;border:2px solid rgba(255,255,255,0.12);padding:12px 20px;border-radius:999px;color:var(--white);font-weight:700;text-decoration:none}
+    .cta-primary:hover{background:rgba(255,255,255,0.04)}
+
+    /* Accessibility helper for background image */
+    .hero img.bg-sr{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+
+    /* Hamburger button (hidden on desktop) */
+    .burger{display:none;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:none;cursor:pointer;padding:6px;border-radius:8px}
+    .burger:focus{outline:2px solid rgba(255,255,255,0.12);outline-offset:4px}
+    .burger svg{display:block;width:22px;height:22px}
+    .burger .line{stroke:var(--white);stroke-width:2.2;stroke-linecap:round;transition:transform .28s cubic-bezier(.2,.9,.2,1),opacity .14s ease}
+    .burger .line{transform-box:fill-box;transform-origin:center}
+
+    @keyframes blurSegmentIn{
+      0%{opacity:0;transform:translateY(-18px) scale(0.985);filter:blur(10px)}
+      60%{opacity:1;filter:blur(0)}
+      100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .blur-segment{opacity:1;transform:none;filter:none}
+      .blur-segment.is-visible{animation:none}
+    }
+
+    @media (max-width:720px){
+      .nav{padding:12px 16px;justify-content:flex-start}
+      .hero .content{padding:122px 20px 28px 20px;gap:14px;max-width:100%}
+      .hero h1{font-size:clamp(34px,11vw,54px);line-height:.95}
+      .hero .lead{font-size:16px;line-height:1.55;max-width:34ch}
+      .ctas{flex-direction:column;align-items:center;width:100%;max-width:360px;margin:8px auto 0;gap:12px}
+      .cta-primary{min-width:220px;width:auto;text-align:center;padding:12px 20px}
+      .gallery-section{padding:60px 16px}
+      .gallery-section h2{font-size:clamp(28px,6vw,40px);margin-bottom:28px}
+      .swiper-slide{aspect-ratio:16/10;min-height:260px}
+      .swiper-slide img{cursor:auto}
+      .lightbox-content{max-width:calc(100% - 24px);max-height:calc(100% - 24px);padding:0}
+      .lightbox-image{max-height:calc(100vh - 140px);width:auto}
+      .lightbox-close,.lightbox-nav{width:38px;height:38px;font-size:20px}
+      .lightbox-prev{left:12px}
+      .lightbox-next{right:12px}
+      .lightbox-close{top:12px;right:12px}
+      .nav-links{margin-left:auto}
+      nav ul{display:none}
+      .burger{display:flex;margin-left:12px}
+      /* When mobile menu is open, show nav as a compact vertical panel */
+      .nav-open nav ul{display:flex;flex-direction:column;position:fixed;right:16px;top:64px;left:16px;background:rgba(0,0,0,0.6);padding:16px;border-radius:12px;gap:12px;z-index:70}
+      .nav-open body, .nav-open html {scroll-behavior: auto}
+      .nav-open .burger .line1{transform:translateY(6px) rotate(45deg)}
+      .nav-open .burger .line2{opacity:0}
+      .nav-open .burger .line3{transform:translateY(-6px) rotate(-45deg)}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav" role="banner">
+    <a class="brand" href="/" aria-label="Kabana de Nature home">
+      <img src="images/logo.png" alt="Kabana de Nature" />
+    </a>
+
+    <nav class="nav-links" role="navigation" aria-label="Primary">
+      <ul id="primary-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="#gallery">Images</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="book" href="mailto:kdn@tripsntourism.com">Book Now</a></li>
+      </ul>
+    </nav>
+
+    <button class="burger" aria-label="Toggle menu" aria-controls="primary-nav" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+        <path class="line line1" d="M3 6h18" fill="none"/>
+        <path class="line line2" d="M3 12h18" fill="none"/>
+        <path class="line line3" d="M3 18h18" fill="none"/>
+      </svg>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Kabana de Nature hero">
+      <!-- Decorative background image is set in CSS; include a hidden image for screen readers/SEO -->
+      <img class="bg-sr" src="image.png" alt="Kabana de Nature resort — pine trees and mountain views." />
+
+      <div class="content">
+        <h1 data-blur-text>Kabana de Nature</h1>
+        <p class="lead">Discover calm mornings, warm hospitality, and thoughtfully designed rooms set among whispering pines. We combine modern comfort with nature-led experiences for an effortless escape.</p>
+
+        <div class="ctas">
+          <a class="cta-primary" href="mailto:kdn@tripsntourism.com">Enquire by email</a>
+          <a class="cta-primary" href="tel:+919350388959">Call +91 93503 88959</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="gallery-container">
+        <h2>Explore Our Resort</h2>
+        <div class="swiper gallery-swiper">
+          <div class="swiper-wrapper" id="gallery-wrapper">
+            <!-- Gallery images will be loaded here -->
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox-overlay" id="lightboxOverlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close image">×</button>
+      <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+      <img class="lightbox-image" id="lightboxImage" src="" alt="Kabana de Nature gallery preview" />
+      <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">›</button>
+    </div>
+  </div>
+
+  <script>
+    // Import Swiper from CDN
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
+    script.onload = function(){
+      initGallery();
+    };
+    document.head.appendChild(script);
+
+    var galleryImages = [];
+    var currentLightboxIndex = 0;
+    var lightboxOverlay, lightboxImage, lightboxClose, lightboxPrev, lightboxNext;
+
+    // Initialize gallery with images from images folder
+    function initGallery(){
+      var images = ['image1.png', 'image2.png', 'image3.png', 'image4.png', 'image5.png', 'image6.png', 'image7.png', 'image8.png', 'image9.png'];
+      galleryImages = images.map(function(img){ return 'images/' + img; });
+      var wrapper = document.getElementById('gallery-wrapper');
+      
+      images.forEach(function(img, index){
+        var slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        var imgEl = document.createElement('img');
+        imgEl.src = 'images/' + img;
+        imgEl.alt = 'Kabana de Nature gallery';
+        imgEl.dataset.index = index;
+        slide.appendChild(imgEl);
+        wrapper.appendChild(slide);
+      });
+
+      new Swiper('.gallery-swiper', {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 24,
+        speed: 600,
+        autoplay: { delay: 4000, disableOnInteraction: false },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          type: 'bullets',
+          clickable: true
+        },
+        breakpoints: {
+          768: { slidesPerView: 2, spaceBetween: 20 },
+          1024: { slidesPerView: 3, spaceBetween: 24 }
+        }
+      });
+
+      lightboxOverlay = document.getElementById('lightboxOverlay');
+      lightboxImage = document.getElementById('lightboxImage');
+      lightboxClose = document.getElementById('lightboxClose');
+      lightboxPrev = document.getElementById('lightboxPrev');
+      lightboxNext = document.getElementById('lightboxNext');
+
+      wrapper.addEventListener('click', function(event){
+        if(!isDesktopLightbox()) return;
+        var target = event.target.closest('img');
+        if(!target || !target.dataset.index) return;
+        openLightbox(parseInt(target.dataset.index, 10));
+      });
+
+      lightboxClose.addEventListener('click', closeLightbox);
+
+      function isDesktopLightbox(){
+        return window.matchMedia('(min-width:721px)').matches;
+      }
+      lightboxPrev.addEventListener('click', showPreviousLightbox);
+      lightboxNext.addEventListener('click', showNextLightbox);
+      lightboxOverlay.addEventListener('click', function(event){
+        if(event.target === lightboxOverlay) closeLightbox();
+      });
+
+      var touchStartX = 0;
+      var touchEndX = 0;
+      var touchThreshold = 40;
+
+      lightboxOverlay.addEventListener('touchstart', function(event){
+        if(event.touches.length !== 1) return;
+        touchStartX = event.touches[0].clientX;
+      }, { passive: true });
+
+      lightboxOverlay.addEventListener('touchend', function(event){
+        touchEndX = event.changedTouches[0].clientX;
+        var deltaX = touchEndX - touchStartX;
+        if(Math.abs(deltaX) < touchThreshold) return;
+        if(deltaX > 0){
+          showPreviousLightbox();
+        } else {
+          showNextLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', function(event){
+        if(!lightboxOverlay.classList.contains('is-open')) return;
+        if(event.key === 'Escape') closeLightbox();
+        if(event.key === 'ArrowLeft') showPreviousLightbox();
+        if(event.key === 'ArrowRight') showNextLightbox();
+      });
+    }
+
+    function openLightbox(index){
+      currentLightboxIndex = index;
+      updateLightboxImage();
+      lightboxOverlay.classList.add('is-open');
+      lightboxOverlay.setAttribute('aria-hidden', 'false');
+      lightboxClose.focus();
+    }
+
+    function closeLightbox(){
+      lightboxOverlay.classList.remove('is-open');
+      lightboxOverlay.setAttribute('aria-hidden', 'true');
+    }
+
+    function showPreviousLightbox(){
+      currentLightboxIndex = (currentLightboxIndex - 1 + galleryImages.length) % galleryImages.length;
+      updateLightboxImage();
+    }
+
+    function showNextLightbox(){
+      currentLightboxIndex = (currentLightboxIndex + 1) % galleryImages.length;
+      updateLightboxImage();
+    }
+
+    function updateLightboxImage(){
+      lightboxImage.src = galleryImages[currentLightboxIndex];
+      lightboxImage.alt = 'Kabana de Nature gallery image ' + (currentLightboxIndex + 1);
+    }
+
+    (function(){
+      var burger = document.querySelector('.burger');
+      var html = document.documentElement;
+      var navBar = document.querySelector('.nav');
+      var nav = document.getElementById('primary-nav');
+      var heading = document.querySelector('h1[data-blur-text]');
+      if(!burger || !nav || !navBar) return;
+
+      function updateNavState(){
+        navBar.classList.toggle('is-scrolled', window.scrollY > 16);
+      }
+
+      updateNavState();
+      window.addEventListener('scroll', updateNavState, { passive: true });
+
+      if(heading){
+        var text = heading.textContent.trim();
+        var words = text.split(/\s+/);
+        heading.textContent = '';
+        heading.classList.add('blur-text');
+
+        words.forEach(function(word, index){
+          var span = document.createElement('span');
+          span.className = 'blur-segment';
+          span.textContent = word;
+          span.style.animationDelay = (index * 240) + 'ms';
+          heading.appendChild(span);
+        });
+
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if(reduceMotion){
+          heading.querySelectorAll('.blur-segment').forEach(function(span){
+            span.classList.add('is-visible');
+          });
+        } else {
+          var io = new IntersectionObserver(function(entries){
+            if(!entries[0] || !entries[0].isIntersecting) return;
+            heading.querySelectorAll('.blur-segment').forEach(function(span, index){
+              window.setTimeout(function(){
+                span.classList.add('is-visible');
+              }, index * 240);
+            });
+            io.disconnect();
+          }, { threshold: 0.1, rootMargin: '0px' });
+          io.observe(heading);
+        }
+      }
+
+      burger.addEventListener('click', function(){
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', String(!expanded));
+        // toggle a class on the root so CSS can show the mobile panel
+        html.classList.toggle('nav-open');
+        // move keyboard focus into nav when opening
+        if(!expanded){
+          var firstLink = nav.querySelector('a');
+          if(firstLink) firstLink.focus();
+        } else {
+          // when closing, return focus to the button
+          this.focus();
+        }
+      });
+
+      // Close menu when clicking outside on small screens
+      document.addEventListener('click', function(e){
+        if(!html.classList.contains('nav-open')) return;
+        var target = e.target;
+        if(target === burger || burger.contains(target) || nav.contains(target)) return;
+        html.classList.remove('nav-open');
+        burger.setAttribute('aria-expanded','false');
+      });
+    })();
+  </script>
+</body>
+</html>
