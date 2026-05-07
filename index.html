@@ -6,7 +6,7 @@
   <title>Kabana de Nature · Work in progress</title>
   <meta name="description" content="Kabana de Nature — a serene retreat in Himachal Pradesh. Escape to pine-lined valleys, modern comfort, and warm hospitality. Book your stay or get in touch." />
   <link rel="canonical" href="https://kabanadenatureresort.com/" />
-  <link rel="icon" href="images/logo.png" />
+  <link rel="icon" href="images/logo.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -16,11 +16,11 @@
   <meta property="og:title" content="Kabana de Nature — Luxury Resort in Rajgarh" />
   <meta property="og:description" content="Experience a peaceful 5-star escape in Village Kot, Rajgarh, with luxury cottages, curated dining, and pine forest views." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://kabanadenatureresort.com/image.png" />
+  <meta property="og:image" content="https://kabanadenatureresort.com/image.webp" />
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:title" content="Kabana de Nature — Luxury Resort in Rajgarh" />
   <meta property="twitter:description" content="Experience a peaceful 5-star escape in Village Kot, Rajgarh, with luxury cottages, curated dining, and pine forest views." />
-  <meta property="twitter:image" content="https://kabanadenatureresort.com/image.png" />
+  <meta property="twitter:image" content="https://kabanadenatureresort.com/image.webp" />
 
   <script type="application/ld+json">
   {
@@ -64,7 +64,7 @@
     main::before{content:"";display:block;height:100vh}
 
     /* Hero */
-    .hero{height:100vh;min-height:560px;display:grid;place-items:center;align-items:flex-start;justify-items:flex-start;position:fixed;top:0;left:0;right:0;width:100%;background-image:linear-gradient(180deg,rgba(0,0,0,.20),rgba(0,0,0,.48)),url('image.png');background-size:cover;background-position:center center;overflow:hidden;z-index:10}
+    .hero{height:100vh;min-height:560px;display:grid;place-items:center;align-items:flex-start;justify-items:flex-start;position:fixed;top:0;left:0;right:0;width:100%;background-image:linear-gradient(180deg,rgba(0,0,0,.20),rgba(0,0,0,.48)),url('image.webp');background-size:cover;background-position:center center;overflow:hidden;z-index:10}
 
     /* Gallery Section */
     .gallery-section{position:relative;z-index:20;background:var(--bg);padding:80px 28px 140px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
@@ -126,13 +126,12 @@
     .contact-cta .cta-primary{background:transparent;border:2px solid rgba(255,255,255,0.12);padding:12px 24px;border-radius:999px;color:var(--white);font-weight:700;text-decoration:none;display:inline-block}
     .contact-cta .cta-primary:hover{background:rgba(255,255,255,0.04)}
 
-    .site-footer{position:relative;z-index:30;background:#070707;padding:32px 28px 36px;color:var(--muted);border-top:1px solid rgba(255,255,255,0.08)}
+    .site-footer{background:#070707;padding:28px 28px 36px;color:var(--muted)}
     .footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
     .footer-logo{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--white)}
     .footer-logo img{height:36px;width:auto;display:block}
-    .footer-copy{font-size:0.95rem;color:rgba(255,255,255,0.82)}
+    .footer-copy{font-size:0.95rem;color:rgba(255,255,255,0.72)}
     .site-footer a.footer-logo:hover .footer-copy{color:var(--white)}
-    .site-footer p.footer-copy{margin:0}
 
     /* subtle global vignette to deepen corners */
     .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.06),rgba(0,0,0,0.18));z-index:22;pointer-events:none}
@@ -215,12 +214,12 @@
 
   <header class="nav" role="banner">
     <a class="brand" href="/" aria-label="Kabana de Nature home">
-      <img src="images/logo.png" alt="Kabana de Nature" />
+      <img src="images/logo.webp" alt="Kabana de Nature" />
     </a>
 
     <nav class="nav-links" role="navigation" aria-label="Primary">
       <ul id="primary-nav">
-        <li><a href="main.html">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="#gallery">Images</a></li>
         <li><a href="#amenities">Amenities</a></li>
         <li><a href="#about">About</a></li>
@@ -241,7 +240,7 @@
   <main>
     <section id="home" class="hero" aria-label="Kabana de Nature hero">
       <!-- Decorative background image is set in CSS; include a hidden image for screen readers/SEO -->
-      <img class="bg-sr" src="image.png" alt="Kabana de Nature resort — pine trees and mountain views." />
+      <img class="bg-sr" src="image.webp" alt="Kabana de Nature resort — pine trees and mountain views." />
 
       <div class="content">
         <h1 data-blur-text>Kabana de Nature</h1>
@@ -348,7 +347,7 @@
   <footer class="site-footer" aria-label="Site footer">
     <div class="footer-inner">
       <a class="footer-logo" href="#home" aria-label="Kabana de Nature homepage">
-        <img src="images/logo.png" alt="Kabana de Nature logo" />
+        <img src="images/logo.webp" alt="Kabana de Nature logo" />
         <span class="footer-copy">Kabana de Nature</span>
       </a>
       <p class="footer-copy">Luxury retreat in Rajgarh, Himachal Pradesh · © 2026</p>
@@ -379,7 +378,7 @@
 
     // Initialize gallery with images from images folder
     function initGallery(){
-      var images = ['image1.png', 'image2.png', 'image3.png', 'image4.png', 'image5.png', 'image6.png', 'image7.png', 'image8.png', 'image9.png'];
+      var images = ['image1.webp', 'image2.webp', 'image3.webp', 'image4.webp', 'image5.webp', 'image6.webp', 'image7.webp', 'image8.webp', 'image9.webp'];
       galleryImages = images.map(function(img){ return 'images/' + img; });
       var wrapper = document.getElementById('gallery-wrapper');
       

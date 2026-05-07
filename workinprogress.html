@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Kabana De Nature Resort | Under Construction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #000000;
+        --panel: rgba(255, 255, 255, 0.02);
+        --panel-border: rgba(255, 255, 255, 0.12);
+        --text: #ffffff;
+        --muted: rgba(255, 255, 255, 0.7);
+        --line: rgba(255, 255, 255, 0.06);
+        --shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        overflow: hidden;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      body::before {
+        background-image:
+          linear-gradient(var(--line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--line) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: radial-gradient(circle at center, black 34%, transparent 86%);
+        opacity: 0.55;
+      }
+
+      body::after {
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.12), transparent 58%);
+        filter: blur(70px);
+        width: 20rem;
+        height: 20rem;
+        left: 50%;
+        top: 14%;
+        transform: translateX(-50%);
+        opacity: 0.08;
+        animation: drift 14s ease-in-out infinite alternate;
+      }
+
+      .page {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .card {
+        width: min(980px, 100%);
+        padding: clamp(28px, 6vw, 64px);
+        border: 1px solid var(--panel-border);
+        border-radius: 32px;
+        background: var(--panel);
+        backdrop-filter: blur(24px);
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        gap: 24px;
+      }
+
+      .brand {
+        margin: 0;
+        font-size: clamp(3.2rem, 11vw, 7.2rem);
+        line-height: 0.92;
+        letter-spacing: -0.08em;
+        font-weight: 700;
+        text-wrap: balance;
+      }
+
+      .brand small {
+        display: block;
+        margin-top: 10px;
+        font-size: clamp(0.85rem, 1.5vw, 1rem);
+        line-height: 1.2;
+        letter-spacing: 0.16em;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.64);
+        text-transform: uppercase;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 28%, transparent 72%, rgba(255, 255, 255, 0.03));
+        pointer-events: none;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        width: fit-content;
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font: 600 11px/1 "Inter", sans-serif;
+      }
+
+      .badge span {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2);
+        animation: pulse 1.8s ease-out infinite;
+      }
+
+      .copy {
+        max-width: 42ch;
+        font-size: clamp(1rem, 2vw, 1.15rem);
+        line-height: 1.7;
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .meta {
+        margin-top: 6px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .pill {
+        padding: 12px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
+        color: rgba(255, 255, 255, 0.84);
+        font: 500 14px/1.1 "Inter", sans-serif;
+      }
+
+      .loader {
+        margin-top: 12px;
+        position: relative;
+        height: 22px;
+      }
+
+      .loader::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        height: 1px;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.16);
+      }
+
+      .loader::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 28%;
+        height: 1px;
+        transform: translateY(-50%);
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+        animation: sweep 2.4s ease-in-out infinite;
+      }
+
+      .footer {
+        margin-top: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        color: rgba(255, 255, 255, 0.56);
+        font: 500 13px/1.3 "Inter", sans-serif;
+      }
+
+      .contact {
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .contact-line {
+        font-size: 16px;
+        color: rgba(255,255,255,0.88);
+        letter-spacing: 0.02em;
+        font-weight: 700;
+      }
+
+      .contact-line a {
+        color: rgba(255,255,255,0.88);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255,255,255,0.04);
+        padding-bottom: 2px;
+        margin: 0 6px;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .status::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 0 18px rgba(255, 255, 255, 0.22);
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.22);
+        }
+        70% {
+          box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
+      }
+
+      @keyframes sweep {
+        0%,
+        100% {
+          transform: translate3d(-10%, -50%, 0);
+          opacity: 0.6;
+        }
+        50% {
+          transform: translate3d(260%, -50%, 0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes drift {
+        from {
+          transform: translateX(-50%) translateY(-8px) scale(0.92);
+        }
+        to {
+          transform: translateX(-50%) translateY(18px) scale(1.04);
+        }
+      }
+
+      @media (max-width: 640px) {
+        body {
+          overflow: auto;
+        }
+
+        .card {
+          border-radius: 24px;
+        }
+
+        .footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="card" aria-labelledby="headline">
+        <h1 class="brand" id="headline">Kabana De Nature Resort <small>Rajgarh</small></h1>
+        <div class="badge"><span></span> under construction</div>
+        <p class="copy">
+          For orders & enquiries, please contact us through the line below.
+        </p>
+        <div class="meta" aria-label="page status">
+          <div class="pill">coming soon</div>
+        </div>
+        <div class="loader" aria-hidden="true"></div>
+        <div class="footer">
+          <div class="status">Site Development in motion</div>
+          <div class="contact">
+            <div class="contact-line"><a href="tel:9350388959">+91 93503-88959</a> · <a href="tel:9418632179">+91 94186-32179</a>  · <a href="kabanadenatureresort@gmail.com">kabanadenatureresort@gmail.com</a></div>
+            <div>© 2026 Kabana De Nature</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
