@@ -5,14 +5,22 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Kabana de Nature · Work in progress</title>
   <meta name="description" content="Kabana de Nature — a serene retreat in Himachal Pradesh. Escape to pine-lined valleys, modern comfort, and warm hospitality. Book your stay or get in touch." />
-  <link rel="canonical" href="/" />
+  <link rel="canonical" href="https://kabanadenatureresort.com/" />
+  <link rel="icon" href="images/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <meta name="robots" content="index,follow" />
-  <meta property="og:title" content="Kabana de Nature — A Hidden Sanctuary" />
-  <meta property="og:description" content="Escape to Kabana de Nature — a serene resort where nature meets modern comfort in Himachal Pradesh." />
+  <meta property="og:site_name" content="Kabana de Nature" />
+  <meta property="og:url" content="https://kabanadenatureresort.com/" />
+  <meta property="og:title" content="Kabana de Nature — Luxury Resort in Rajgarh" />
+  <meta property="og:description" content="Experience a peaceful 5-star escape in Village Kot, Rajgarh, with luxury cottages, curated dining, and pine forest views." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://kabanadenatureresort.com/image.png" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Kabana de Nature — Luxury Resort in Rajgarh" />
+  <meta property="twitter:description" content="Experience a peaceful 5-star escape in Village Kot, Rajgarh, with luxury cottages, curated dining, and pine forest views." />
+  <meta property="twitter:image" content="https://kabanadenatureresort.com/image.png" />
 
   <script type="application/ld+json">
   {
@@ -59,7 +67,7 @@
     .hero{height:100vh;min-height:560px;display:grid;place-items:center;align-items:flex-start;justify-items:flex-start;position:fixed;top:0;left:0;right:0;width:100%;background-image:linear-gradient(180deg,rgba(0,0,0,.20),rgba(0,0,0,.48)),url('image.png');background-size:cover;background-position:center center;overflow:hidden;z-index:10}
 
     /* Gallery Section */
-    .gallery-section{position:relative;z-index:20;background:var(--bg);padding:80px 28px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+    .gallery-section{position:relative;z-index:20;background:var(--bg);padding:80px 28px 140px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
     .gallery-container{max-width:1200px;margin:0 auto;width:100%}
     .gallery-section h2{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Segoe UI,Roboto,Inter,system-ui,sans-serif;font-weight:800;font-size:clamp(32px,5vw,56px);margin:0 0 48px 0;color:var(--white);letter-spacing:-0.01em}
     .swiper{width:100%}
@@ -80,9 +88,43 @@
     .swiper-button-next::after,.swiper-button-prev::after{font-size:16px}
     .swiper-pagination{bottom:0}
     .swiper-pagination-bullet{background:rgba(255,255,255,0.5);width:8px;height:8px}
-    .swiper-pagination-bullet-active{background:var(--white)}
+    /* About Section */
+    .about-section{position:relative;z-index:22;background:#070707;padding:100px 28px 120px;color:var(--white);border-top:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+    .about-section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:3px;background:rgba(255,255,255,.18);border-radius:999px;margin-top:-24px}
+    .about-container{max-width:900px;margin:0 auto;display:grid;place-items:center;text-align:center}
+    .about-content h2{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Segoe UI,Roboto,Inter,system-ui,sans-serif;font-weight:800;font-size:clamp(32px,5vw,56px);margin:0 0 24px 0;color:var(--white);letter-spacing:-0.01em}
+    .about-content p{margin:0 auto 28px;max-width:65ch;color:var(--muted);font-size:18px;line-height:1.8}
+    .about-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:28px;max-width:700px;width:100%}
+    .about-meta div{background:rgba(255,255,255,0.04);padding:18px 20px;border-radius:16px;border:1px solid rgba(255,255,255,0.06)}
+    .about-meta strong{display:block;margin-bottom:8px;font-size:0.98rem;color:var(--white)}
+    .about-meta span{color:var(--muted);font-size:0.95rem;line-height:1.6}
 
-    .hero::before{content:"";position:absolute;left:-6%;bottom:-10%;width:72%;height:82%;background:radial-gradient(circle at left bottom, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.82) 10%, rgba(0,0,0,0.7) 24%, rgba(0,0,0,0.45) 44%, rgba(0,0,0,0.18) 66%, transparent 86%);filter:blur(48px);transform:translateZ(0);z-index:24;pointer-events:none}
+    .amenities-section{position:relative;z-index:22;background:#0b0b0b;padding:80px 28px;color:var(--white);border-top:1px solid rgba(255,255,255,0.08)}
+    .amenities-section h2{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Segoe UI,Roboto,Inter,system-ui,sans-serif;font-weight:800;font-size:clamp(32px,5vw,56px);margin:0 0 24px 0;color:var(--white);letter-spacing:-0.01em;text-align:center}
+    .amenities-intro{max-width:780px;margin:0 auto 40px;text-align:center;color:var(--muted);line-height:1.8;font-size:18px}
+    .amenities-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:1100px;margin:0 auto}
+    .amenities-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:10px;min-height:190px;box-shadow:0 18px 48px rgba(0,0,0,0.18);transition:transform .24s ease,background .24s ease}
+    .amenities-card:hover{transform:translateY(-4px);background:rgba(255,255,255,0.06)}
+    .amenities-card h3{margin:0;font-size:1.1rem;font-weight:700;color:var(--white)}
+    .amenities-card p{margin:0;color:var(--muted);line-height:1.7;font-size:0.96rem}
+
+    .contact-section{position:relative;z-index:22;background:#0b0b0b;padding:100px 28px 120px;color:var(--white);border-top:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+    .contact-section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:3px;background:rgba(255,255,255,.18);border-radius:999px;margin-top:-24px}
+    .contact-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(320px,1.1fr) minmax(320px,0.9fr);gap:48px;align-items:center;justify-items:stretch}
+    .contact-content{display:flex;flex-direction:column;justify-content:center}
+    .contact-map{align-self:center}
+    .contact-content h2{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Segoe UI,Roboto,Inter,system-ui,sans-serif;font-weight:800;font-size:clamp(32px,5vw,56px);margin:0 0 24px 0;color:var(--white);letter-spacing:-0.01em}
+    .contact-content p{margin:0 0 28px 0;color:var(--muted);font-size:18px;line-height:1.8;max-width:60ch}
+    .contact-details{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+    .contact-item{background:rgba(255,255,255,0.04);padding:20px;border-radius:16px;border:1px solid rgba(255,255,255,0.06);transition:background .2s ease}
+    .contact-item:hover{background:rgba(255,255,255,0.08)}
+    .contact-item h3{margin:0 0 8px 0;font-size:1.1rem;font-weight:700;color:var(--white)}
+    .contact-item a{color:var(--muted);text-decoration:none;font-size:0.95rem}
+    .contact-item a:hover{color:var(--white)}
+    .contact-cta{margin-top:32px}
+    .contact-cta .cta-primary{background:transparent;border:2px solid rgba(255,255,255,0.12);padding:12px 24px;border-radius:999px;color:var(--white);font-weight:700;text-decoration:none;display:inline-block}
+    .contact-cta .cta-primary:hover{background:rgba(255,255,255,0.04)}
+
     /* subtle global vignette to deepen corners */
     .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.06),rgba(0,0,0,0.18));z-index:22;pointer-events:none}
     .hero .content{position:relative;z-index:30;max-width:1100px;padding:280px 48px 48px 48px;display:flex;flex-direction:column;gap:18px}
@@ -133,6 +175,21 @@
       .lightbox-prev{left:12px}
       .lightbox-next{right:12px}
       .lightbox-close{top:12px;right:12px}
+      .about-section{padding:60px 16px}
+      .about-container{max-width:100%;text-align:center}
+      .about-content h2{font-size:clamp(28px,6vw,40px);margin-bottom:16px}
+      .about-content p{font-size:16px;max-width:100%}
+      .about-meta{grid-template-columns:1fr;gap:16px;margin-top:20px}
+      .amenities-grid{grid-template-columns:1fr}
+      .contact-section{padding:60px 16px}
+      .contact-container{grid-template-columns:1fr;gap:32px;text-align:center}
+      .contact-content{order:2}
+      .contact-map{order:1}
+      .contact-content h2{font-size:clamp(28px,6vw,40px);margin-bottom:16px}
+      .contact-content p{font-size:16px;max-width:100%}
+      .contact-details{grid-template-columns:1fr;gap:16px;max-width:400px;margin:0 auto}
+      .contact-item{text-align:left;padding:16px}
+      .contact-map iframe{height:300px}
       .nav-links{margin-left:auto}
       nav ul{display:none}
       .burger{display:flex;margin-left:12px}
@@ -154,10 +211,11 @@
 
     <nav class="nav-links" role="navigation" aria-label="Primary">
       <ul id="primary-nav">
-        <li><a href="/">Home</a></li>
+        <li><a href="main.html">Home</a></li>
         <li><a href="#gallery">Images</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#amenities">Amenities</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
         <li><a class="book" href="mailto:kdn@tripsntourism.com">Book Now</a></li>
       </ul>
     </nav>
@@ -172,7 +230,7 @@
   </header>
 
   <main>
-    <section class="hero" aria-label="Kabana de Nature hero">
+    <section id="home" class="hero" aria-label="Kabana de Nature hero">
       <!-- Decorative background image is set in CSS; include a hidden image for screen readers/SEO -->
       <img class="bg-sr" src="image.png" alt="Kabana de Nature resort — pine trees and mountain views." />
 
@@ -187,7 +245,7 @@
       </div>
     </section>
 
-    <section class="gallery-section">
+    <section id="gallery" class="gallery-section">
       <div class="gallery-container">
         <h2>Explore Our Resort</h2>
         <div class="swiper gallery-swiper">
@@ -197,6 +255,82 @@
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
           <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="amenities-section" id="amenities" aria-labelledby="amenities-heading">
+      <h2 id="amenities-heading">Key Features & Amenities</h2>
+      <p class="amenities-intro">A calm, modern retreat with thoughtful amenities designed around comfort, connection, and effortless enjoyment.</p>
+      <div class="amenities-grid">
+        <div class="amenities-card">
+          <h3>Accommodations</h3>
+          <p>Charming wooden cottages and family rooms with private balconies or patios, all offering mountain and garden views.</p>
+        </div>
+        <div class="amenities-card">
+          <h3>Dining</h3>
+          <p>An on-site restaurant serving American dishes and vegetarian delicacies, with buffet breakfast options to start your day.</p>
+        </div>
+        <div class="amenities-card">
+          <h3>Activities</h3>
+          <p>Enjoy nature treks, bonfires, barbecue evenings, and a kids’ club for family-friendly outdoor fun.</p>
+        </div>
+        <div class="amenities-card">
+          <h3>Facilities</h3>
+          <p>Free Wi-Fi, private parking, room service, and pet-friendly areas ensure a seamless stay for every guest.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section" id="about" aria-labelledby="about-heading">
+      <div class="about-container">
+        <div class="about-content">
+          <h2 id="about-heading">About Kabana de Nature</h2>
+          <p>Kabana de Nature is a 5-star resort located in Rajgarh, Himachal Pradesh, known for offering a luxury getaway amidst serene pine forests. Situated in Village Kot, it is roughly a 3-hour drive from Chandigarh and provides a peaceful escape from urban noise. Guests enjoy curated dining, modern amenities, and spacious cottages designed for restful stays. Our thoughtfully designed rooms and warm hospitality create an atmosphere of calm, inviting you to unwind, explore the outdoors, and create unforgettable memories in harmony with nature.</p>
+          <div class="about-meta">
+            <div>
+              <strong>Nature-led stay</strong>
+              <span>Wake up to pine-scented mornings and mountain air in a peaceful hilltop sanctuary.</span>
+            </div>
+            <div>
+              <strong>Comfort-first design</strong>
+              <span>Modern rooms, cozy communal spaces, and attentive service create a refined yet relaxed escape.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+      <div class="contact-container">
+        <div class="contact-content">
+          <h2 id="contact-heading">Get in Touch</h2>
+          <p>Ready to plan your escape? Reach out to us for reservations, inquiries, or just to say hello. We're here to make your stay unforgettable.</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <h3>Phone</h3>
+              <a href="tel:+919350388959">+91 93503 88959</a><br>
+              <a href="tel:+919418632179">+91 94186 32179</a>
+            </div>
+            <div class="contact-item">
+              <h3>Email</h3>
+              <a href="mailto:kdn@tripsntourism.com">kdn@tripsntourism.com</a>
+            </div>
+            <div class="contact-item">
+              <h3>Address</h3>
+              <a href="https://maps.app.goo.gl/jzGBzZvo2rHMhJKi8" target="_blank" rel="noopener">Village Kot, Rajgarh<br>Koti Mawga, Himachal Pradesh 173101</a>
+            </div>
+            <div class="contact-item">
+              <h3>Instagram</h3>
+              <a href="https://www.instagram.com/kabana_de_nature/" target="_blank" rel="noopener">@kabana_de_nature</a>
+            </div>
+          </div>
+          <div class="contact-cta">
+            <a class="cta-primary" href="mailto:kdn@tripsntourism.com">Send a Message</a>
+          </div>
+        </div>
+        <div class="contact-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d439572.9782676757!2d76.74030573346815!3d30.601140143031056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390f7b05e799716f%3A0xf78f77794a6c5b13!2sKabana%20de%20Nature!5e0!3m2!1sen!2sin!4v1778089042578!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Kabana de Nature location map"></iframe>
         </div>
       </div>
     </section>
@@ -235,7 +369,7 @@
         slide.className = 'swiper-slide';
         var imgEl = document.createElement('img');
         imgEl.src = 'images/' + img;
-        imgEl.alt = 'Kabana de Nature gallery';
+        imgEl.alt = 'Kabana de Nature resort gallery image ' + (index + 1);
         imgEl.dataset.index = index;
         slide.appendChild(imgEl);
         wrapper.appendChild(slide);
