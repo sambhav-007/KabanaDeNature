@@ -164,7 +164,7 @@
       100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
     }
 
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.8s cubic-bezier(.16,1,.3,1),transform 0.8s cubic-bezier(.16,1,.3,1);will-change:opacity,transform}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity 1.2s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1);will-change:opacity,transform}
     .reveal.is-visible{opacity:1;transform:translateY(0)}
 
     @media (prefers-reduced-motion: reduce){
@@ -563,7 +563,7 @@
               window.setTimeout(function(){
                 entry.target.classList.add('is-visible');
               }, delay);
-              delay += 100; // Stagger effect for multiple items entering at once
+              delay += 250; // Stagger effect for multiple items entering at once
               observer.unobserve(entry.target);
             }
           });
