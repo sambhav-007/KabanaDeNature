@@ -8,8 +8,12 @@
   <link rel="canonical" href="https://kabanadenatureresort.com/" />
   <link rel="icon" href="images/logo.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
+  <link rel="preload" href="image.webp" as="image">
   <meta name="robots" content="index,follow" />
   <meta property="og:site_name" content="Kabana de Nature" />
   <meta property="og:url" content="https://kabanadenatureresort.com/" />
@@ -387,6 +391,7 @@
         var imgEl = document.createElement('img');
         imgEl.src = 'images/' + img;
         imgEl.alt = 'Kabana de Nature resort gallery image ' + (index + 1);
+        imgEl.loading = 'lazy';
         imgEl.dataset.index = index;
         slide.appendChild(imgEl);
         wrapper.appendChild(slide);
