@@ -12,8 +12,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" onload="this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
   <link rel="preload" href="image.webp" as="image">
   
   <link rel="stylesheet" href="index.css">
@@ -78,7 +76,6 @@
   }
   </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
   <script src="main.js" defer></script>
 </head>
 <body>
@@ -126,14 +123,12 @@
 
     <section id="gallery" class="gallery-section">
       <div class="gallery-container">
-        <h2 class="reveal">Explore Our Resort</h2>
-        <div class="swiper gallery-swiper reveal">
-          <div class="swiper-wrapper" id="gallery-wrapper">
-            <!-- Gallery images will be loaded here via JS -->
-          </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
+        <div class="gallery-header reveal">
+          <h2>Explore Our Resort</h2>
+          <p>A glimpse into the serene spaces and nature-led design of Kabana de Nature.</p>
+        </div>
+        <div class="gallery-grid reveal" id="gallery-wrapper">
+          <!-- Gallery images will be loaded here via JS -->
         </div>
       </div>
     </section>

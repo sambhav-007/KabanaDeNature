@@ -7,8 +7,7 @@ const galleryData = [
   { src: 'images/image5.webp', alt: 'Resort garden area during daytime' },
   { src: 'images/image6.webp', alt: 'Comfortable lounge area for guests' },
   { src: 'images/image7.webp', alt: 'Nighttime view of the resort with ambient lighting' },
-  { src: 'images/image8.webp', alt: 'Mountain view from the resort property' },
-  { src: 'images/image9.webp', alt: 'Close up of the architectural wooden details' }
+  { src: 'images/image8.webp', alt: 'Mountain view from the resort property' }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -48,38 +47,33 @@ function initGallery() {
   if (!wrapper) return;
 
   galleryData.forEach((item, index) => {
-    const slide = document.createElement('div');
-    slide.className = 'swiper-slide';
+    const itemEl = document.createElement('div');
+    itemEl.className = 'gallery-item reveal';
+    itemEl.tabIndex = 0;
+    itemEl.setAttribute('role', 'button');
+    itemEl.setAttribute('aria-label', `View ${item.alt} in full screen`);
+    itemEl.dataset.index = index;
+    
     const imgEl = document.createElement('img');
     imgEl.src = item.src;
     imgEl.alt = item.alt;
     imgEl.loading = 'lazy';
     imgEl.dataset.index = index;
-    // adding explicit dimensions roughly matching 16/10 aspect ratio
-    imgEl.width = 800;
-    imgEl.height = 500;
-    slide.appendChild(imgEl);
-    wrapper.appendChild(slide);
-  });
-
-  new Swiper('.gallery-swiper', {
-    loop: true,
-    slidesPerView: 1,
-    spaceBetween: 24,
-    speed: 600,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {
-      768: { slidesPerView: 2, spaceBetween: 20 },
-      1024: { slidesPerView: 3, spaceBetween: 24 }
-    }
+    imgEl.width = 600;
+    imgEl.height = 600;
+    
+    itemEl.appendChild(imgEl);
+    wrapper.appendChild(itemEl);
+    
+    // allow keyboard enter/space to open lightbox
+    itemEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        document.querySelector('.overlay#lightboxOverlay')?.classList.contains('is-open') 
+          ? null 
+          : window.openLightboxFromGrid(index);
+      }
+    });
   });
 }
 
@@ -98,8 +92,7 @@ function initModals() {
     trapFocus(lightboxOverlay);
 
     wrapper?.addEventListener('click', (e) => {
-      if (!isDesktopLightbox()) return;
-      const target = e.target.closest('img');
+      const target = e.target.closest('.gallery-item') || e.target.closest('img');
       if (!target || target.dataset.index === undefined) return;
       openLightbox(parseInt(target.dataset.index, 10));
     });
@@ -135,10 +128,6 @@ function initModals() {
     });
   }
 
-  function isDesktopLightbox() {
-    return window.matchMedia('(min-width:721px)').matches;
-  }
-
   function openLightbox(index) {
     previousFocusElement = document.activeElement;
     currentLightboxIndex = index;
@@ -148,6 +137,7 @@ function initModals() {
     document.body.style.overflow = 'hidden';
     setTimeout(() => lightboxClose?.focus(), 100);
   }
+  window.openLightboxFromGrid = openLightbox;
 
   function closeLightbox() {
     lightboxOverlay.classList.remove('is-open');
