@@ -209,6 +209,21 @@ function initModals() {
     });
   }
 
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+        const name = formData.get('Name') || '';
+        const email = formData.get('Email') || '';
+        const message = formData.get('Message') || '';
+        const mailtoLink = `mailto:kdn@tripsntourism.com?subject=Booking Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}%0A%0A---%0AContact Email: ${encodeURIComponent(email)}`;
+        window.location.href = mailtoLink;
+        closeContactModal();
+        contactForm.reset();
+      });
+    }
+
   function closeContactModal() {
     contactModal.classList.remove('is-open');
     contactModal.setAttribute('aria-hidden', 'true');
