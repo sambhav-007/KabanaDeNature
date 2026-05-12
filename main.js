@@ -7,7 +7,15 @@ const galleryData = [
   { src: 'images/image5.webp', alt: 'Resort garden area during daytime' },
   { src: 'images/image6.webp', alt: 'Comfortable lounge area for guests' },
   { src: 'images/image7.webp', alt: 'Nighttime view of the resort with ambient lighting' },
-  { src: 'images/image8.webp', alt: 'Mountain view from the resort property' }
+  { src: 'images/image8.webp', alt: 'Mountain view from the resort property' },
+  { src: 'images/image9.webp', alt: 'Wide scenic view from Kabana de Nature' },
+  { src: 'images/Entrance.webp', alt: 'Entrance area at Kabana de Nature' },
+  { src: 'images/Restaurant%20Out.webp', alt: 'Restaurant exterior surrounded by greenery' },
+  { src: 'images/Lawn%20Out.webp', alt: 'Open lawn area for guests to relax outdoors' },
+  { src: 'images/Cottages%20at%20Night1.webp', alt: 'Cottages lit warmly at night' },
+  { src: 'images/IMG_2406.webp', alt: 'Resort pathway and outdoor seating area' },
+  { src: 'images/20220917_123420_edited.webp', alt: 'Natural surroundings and resort landscaping' },
+  { src: 'images/20220917_124017_edited.webp', alt: 'Outdoor view of the resort property' }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
