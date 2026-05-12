@@ -344,8 +344,12 @@ p.lead { margin: 0; color: var(--muted); max-width: 62ch; font-size: 18px; line-
 .about-section {
   position: relative;
   z-index: 22;
-  background: #070707;
-  padding: 100px 28px 120px;
+  overflow: hidden;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,0.05), transparent 36%),
+    radial-gradient(circle at 82% 24%, rgba(255,59,48,0.13), transparent 28%),
+    #070707;
+  padding: 110px 28px 130px;
   color: var(--white);
   border-top: 1px solid rgba(255,255,255,0.08);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
@@ -353,14 +357,24 @@ p.lead { margin: 0; color: var(--muted); max-width: 62ch; font-size: 18px; line-
 .about-section::before {
   content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: rgba(255,255,255,.18); border-radius: 999px; margin-top: -24px;
 }
-.about-container { max-width: 900px; margin: 0 auto; display: grid; place-items: center; text-align: center; }
-.about-content h2 { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Segoe UI, Roboto, Inter, system-ui, sans-serif; font-weight: 800; font-size: clamp(32px, 5vw, 56px); margin: 0 0 24px 0; color: var(--white); letter-spacing: -0.01em; }
-.about-content p { margin: 0 auto 28px; max-width: 65ch; color: var(--muted); font-size: 18px; line-height: 1.8; }
-.about-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 28px; max-width: 700px; width: 100%; }
-.about-meta div { background: rgba(255,255,255,0.04); padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.06); transition: background .2s ease; }
-.about-meta div:hover { background: rgba(255,255,255,0.06); }
+.about-container { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr); gap: 56px; align-items: center; }
+.about-content { min-width: 0; }
+.about-kicker { display: inline-flex; margin-bottom: 16px; color: rgba(255,255,255,0.72); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+.about-content h2 { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Segoe UI, Roboto, Inter, system-ui, sans-serif; font-weight: 800; font-size: clamp(38px, 5vw, 64px); line-height: 0.98; margin: 0 0 24px 0; color: var(--white); letter-spacing: -0.01em; max-width: 720px; }
+.about-content p { margin: 0 0 32px; max-width: 68ch; color: rgba(255,255,255,0.76); font-size: 18px; line-height: 1.85; }
+.about-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 760px; width: 100%; }
+.about-meta div { background: rgba(255,255,255,0.055); padding: 22px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); transition: background .2s ease, border-color .2s ease, transform .2s ease; }
+.about-meta div:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); transform: translateY(-3px); }
 .about-meta strong { display: block; margin-bottom: 8px; font-size: 1.05rem; color: var(--white); }
-.about-meta span { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+.about-meta span { color: rgba(255,255,255,0.72); font-size: 0.95rem; line-height: 1.6; }
+.about-visual { position: relative; min-height: 520px; }
+.about-visual img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 28px 80px rgba(0,0,0,0.42); }
+.about-image-main { position: absolute; inset: 0 0 auto auto; width: 86%; height: 390px; }
+.about-image-accent { position: absolute; left: 0; bottom: 0; width: 56%; height: 230px; }
+.about-facts { position: absolute; right: 22px; bottom: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; overflow: hidden; width: min(340px, calc(100% - 44px)); border-radius: 8px; border: 1px solid rgba(255,255,255,0.14); background: rgba(0,0,0,0.72); box-shadow: 0 18px 50px rgba(0,0,0,0.32); }
+.about-facts div { padding: 18px; background: rgba(255,255,255,0.06); }
+.about-facts strong { display: block; margin-bottom: 4px; color: var(--white); font-size: 1.35rem; line-height: 1; }
+.about-facts span { color: rgba(255,255,255,0.72); font-size: 0.86rem; line-height: 1.35; }
 
 /* Amenities Section */
 .amenities-section { position: relative; z-index: 22; background: #0b0b0b; padding: 100px 28px; color: var(--white); border-top: 1px solid rgba(255,255,255,0.08); }
@@ -600,11 +614,34 @@ p.lead { margin: 0; color: var(--muted); max-width: 62ch; font-size: 18px; line-
   .lightbox-prev { left: 12px; }
   .lightbox-next { right: 12px; }
   .modal-close { top: 12px; right: 12px; }
-  .about-section { padding: 60px 16px; }
-  .about-container { max-width: 100%; text-align: center; }
-  .about-content h2 { font-size: clamp(28px, 6vw, 40px); margin-bottom: 16px; }
-  .about-content p { font-size: 16px; max-width: 100%; }
-  .about-meta { grid-template-columns: 1fr; gap: 16px; margin-top: 20px; }
+  .about-section { padding: 70px 16px; }
+  .about-container { max-width: 100%; grid-template-columns: 1fr; gap: 32px; text-align: left; }
+  .about-kicker { font-size: 0.72rem; line-height: 1.4; margin-bottom: 12px; }
+  .about-content h2 { font-size: clamp(34px, 10vw, 46px); margin-bottom: 16px; }
+  .about-content p { font-size: 16px; max-width: 100%; line-height: 1.75; }
+  .about-meta { grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+  .about-meta div { padding: 18px; }
+  .about-visual {
+    display: block;
+    min-height: 0;
+    margin-top: 2px;
+  }
+  .about-image-main {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 260px;
+  }
+  .about-image-accent { display: none; }
+  .about-facts {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 10px;
+  }
+  .about-facts div { padding: 14px; }
   .amenities-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .amenities-card { min-height: 0; padding: 18px 14px; border-radius: 12px; gap: 8px; }
   .amenities-icon { width: 22px; height: 22px; margin-bottom: 2px; }
