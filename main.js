@@ -237,14 +237,27 @@ function initModals() {
 
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
+      const bookingDate = document.getElementById('bookingDate');
+      if (bookingDate) {
+        bookingDate.min = new Date().toISOString().split('T')[0];
+      }
+
       contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const formData = new FormData(contactForm);
-        const name = formData.get('Name') || '';
-        const email = formData.get('Email') || '';
-        const message = formData.get('Message') || '';
-        const mailtoLink = `mailto:kdn@tripsntourism.com?subject=Booking Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}%0A%0A---%0AContact Email: ${encodeURIComponent(email)}`;
-        window.location.href = mailtoLink;
+        const date = formData.get('Date') || '';
+        const rooms = formData.get('Rooms') || '';
+        const message = [
+          'Hello Kabana de Nature,',
+          '',
+          'I would like to send a booking inquiry.',
+          `Preferred date: ${date}`,
+          `Number of rooms: ${rooms}`,
+          '',
+          'Please share availability and pricing.'
+        ].join('\n');
+        const whatsappLink = `https://wa.me/919350388959?text=${encodeURIComponent(message)}`;
+        window.open(whatsappLink, '_blank', 'noopener');
         closeContactModal();
         contactForm.reset();
       });

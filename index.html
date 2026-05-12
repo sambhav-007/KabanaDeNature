@@ -305,21 +305,24 @@
     <div class="modal-content-box">
       <button class="modal-close" id="contactModalClose" aria-label="Close booking modal">×</button>
       <h3 id="modalHeading">Book Your Stay</h3>
-      <p>Fill out the form below to inquire about reservations, and we will get back to you shortly.</p>
+      <p>Select your preferred date and number of rooms. Your inquiry will open directly in WhatsApp.</p>
       <form id="contactForm">
         <div class="form-group">
-          <label for="userName">Full Name</label>
-          <input type="text" id="userName" name="Name" required placeholder="Jane Doe" />
+          <label for="bookingDate">Preferred Date</label>
+          <input type="date" id="bookingDate" name="Date" required />
         </div>
         <div class="form-group">
-          <label for="userEmail">Email Address</label>
-          <input type="text" id="userEmail" name="Email" required placeholder="jane@example.com" />
+          <label for="roomCount">Number of Rooms</label>
+          <select id="roomCount" name="Rooms" required>
+            <option value="" selected disabled>Select rooms</option>
+            <option value="1 room">1 room</option>
+            <option value="2 rooms">2 rooms</option>
+            <option value="3 rooms">3 rooms</option>
+            <option value="4 rooms">4 rooms</option>
+            <option value="5+ rooms">5+ rooms</option>
+          </select>
         </div>
-        <div class="form-group">
-          <label for="userMessage">Message or Dates</label>
-          <textarea id="userMessage" name="Message" required placeholder="I would like to inquire about dates..."></textarea>
-        </div>
-        <button type="submit" class="btn-submit">Send Inquiry</button>
+        <button type="submit" class="btn-submit">Send Inquiry on WhatsApp</button>
       </form>
     </div>
   </div>

@@ -309,7 +309,7 @@ p.lead { margin: 0; color: var(--muted); max-width: 62ch; font-size: 18px; line-
 .modal-content-box p { color: var(--muted); margin-bottom: 24px; line-height: 1.5; }
 .form-group { margin-bottom: 16px; }
 .form-group label { display: block; font-size: 14px; margin-bottom: 8px; color: var(--muted); }
-.form-group input, .form-group textarea {
+.form-group input, .form-group select, .form-group textarea {
   width: 100%;
   padding: 12px 16px;
   border-radius: 12px;
@@ -320,11 +320,13 @@ p.lead { margin: 0; color: var(--muted); max-width: 62ch; font-size: 18px; line-
   font-size: 16px;
   transition: border-color .2s ease, background .2s ease;
 }
-.form-group input:focus, .form-group textarea:focus {
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
   outline: none;
   border-color: var(--accent);
   background: rgba(255,255,255,0.06);
 }
+.form-group select { appearance: none; cursor: pointer; }
+.form-group select option { background: #111; color: var(--white); }
 .form-group textarea { resize: vertical; min-height: 100px; }
 .btn-submit {
   width: 100%;
