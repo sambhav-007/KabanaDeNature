@@ -317,6 +317,11 @@ function initNavigation() {
   window.addEventListener('scroll', updateNavState, { passive: true });
 
   if (burger && nav) {
+    function closeMobileNav() {
+      html.classList.remove('nav-open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+
     burger.addEventListener('click', function() {
       const expanded = this.getAttribute('aria-expanded') === 'true';
       this.setAttribute('aria-expanded', String(!expanded));
@@ -329,12 +334,15 @@ function initNavigation() {
       }
     });
 
+    nav.querySelectorAll('a[href]').forEach(link => {
+      link.addEventListener('click', closeMobileNav);
+    });
+
     document.addEventListener('click', (e) => {
       if (!html.classList.contains('nav-open')) return;
       const target = e.target;
       if (target === burger || burger.contains(target) || nav.contains(target)) return;
-      html.classList.remove('nav-open');
-      burger.setAttribute('aria-expanded', 'false');
+      closeMobileNav();
     });
   }
 }

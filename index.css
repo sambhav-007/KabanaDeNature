@@ -604,9 +604,7 @@ p.lead { margin: 0; color: var(--muted); max-width: 62ch; font-size: 18px; line-
     flex-direction: column; 
     position: fixed; 
     inset: 0; 
-    background: rgba(11, 11, 11, 0.95); 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: #000;
     padding: 100px 24px 24px; 
     gap: 24px; 
     z-index: 70;
@@ -619,6 +617,12 @@ p.lead { margin: 0; color: var(--muted); max-width: 62ch; font-size: 18px; line-
   .book { padding: 14px 32px; width: 100%; text-align: center; font-size: 18px; margin-top: 16px; }
   .burger { display: flex; margin-left: 12px; }
   
+  .nav-open .nav {
+    background: #000;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom-color: transparent;
+  }
   .nav-open nav ul { opacity: 1; pointer-events: auto; transform: translateY(0); }
   .nav-open body, .nav-open html { overflow: hidden; } /* prevent scrolling */
   .nav-open .burger .line1 { transform: translateY(6px) rotate(45deg); }
