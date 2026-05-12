@@ -11,11 +11,39 @@ const galleryData = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
+  initHeroVideo();
   initGallery();
   initModals();
   initAnimations();
   initNavigation();
 });
+
+function initHeroVideo() {
+  const video = document.querySelector('.hero-video');
+  const sources = video ? Array.from(video.querySelectorAll('source[data-src]')) : [];
+  if (!video || sources.length === 0) return;
+
+  const loadVideo = () => {
+    if (sources.some(source => source.src)) return;
+    sources.forEach(source => {
+      source.src = source.dataset.src;
+    });
+    video.load();
+    video.play().catch(() => {});
+  };
+
+  const deferLoad = () => {
+    const isMobile = window.matchMedia && window.matchMedia('(max-width: 720px)').matches;
+    const delay = isMobile ? 900 : 100;
+    setTimeout(loadVideo, delay);
+  };
+
+  if (document.readyState === 'complete') {
+    deferLoad();
+  } else {
+    window.addEventListener('load', deferLoad, { once: true });
+  }
+}
 
 // Focus Trap Utility
 function trapFocus(element) {

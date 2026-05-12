@@ -79,17 +79,24 @@ main::before { content: ""; display: block; height: 100vh; }
   left: 0;
   right: 0;
   width: 100%;
-  background-image: linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.48)), url('image.webp');
-  background-size: cover;
-  background-position: center center;
+  background: #050505;
   overflow: hidden;
   z-index: 10;
+}
+.hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.18));
+  background: linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.48));
   z-index: 22;
   pointer-events: none;
 }
