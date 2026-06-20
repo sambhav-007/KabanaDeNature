@@ -1,11 +1,20 @@
 'use strict';
 
 const $ = (id) => document.getElementById(id);
-const api = (path, opts) => fetch('/api/admin' + path, {
-  credentials: 'same-origin',
-  headers: { 'Content-Type': 'application/json' },
-  ...opts
-}).then((r) => r.json());
+
+// Blocking loading overlay (counter handles overlapping calls).
+let _busy = 0;
+function showLoading() { _busy++; const el = $('loadingOverlay'); if (el) el.hidden = false; }
+function hideLoading() { _busy = Math.max(0, _busy - 1); const el = $('loadingOverlay'); if (el && _busy === 0) el.hidden = true; }
+
+const api = (path, opts) => {
+  showLoading();
+  return fetch('/api/admin' + path, {
+    credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/json' },
+    ...opts
+  }).then((r) => r.json()).finally(hideLoading);
+};
 
 let rooms = [];
 
@@ -111,8 +120,10 @@ async function loadBookings() {
 
 function initCalDates() {
   if ($('calFrom').value) return;
+  // Load only a few upcoming days by default (fewer on phones) for a clean view.
+  const span = window.matchMedia('(max-width: 680px)').matches ? 5 : 9;
   const from = new Date().toISOString().slice(0, 10);
-  const to = new Date(Date.now() + 14 * 86400000).toISOString().slice(0, 10);
+  const to = new Date(Date.now() + span * 86400000).toISOString().slice(0, 10);
   $('calFrom').value = from; $('calTo').value = to;
   loadCalendar();
 }
@@ -187,7 +198,9 @@ async function applyBulk(payload) {
   const out = await api('/calendar/bulk', { method: 'POST', body: JSON.stringify({ cells, ...payload }) });
   if (out.error) return alert(out.error);
   $('bulkUnits').value = ''; $('bulkPrice').value = '';
-  await loadCalendar();   // re-render; selection persists via the Set
+  selection.clear();         // deselect cells after applying
+  await loadCalendar();      // re-render with no selection
+  updateBulkBar();           // hides the bulk bar
 }
 
 async function loadRooms() {

@@ -92,9 +92,11 @@
 .ad-rate-tool h4 { margin: 0 0 12px; }
 
 @media (max-width: 680px) {
-  .ad-header { padding: 12px 14px; gap: 12px; }
-  .ad-tabs { order: 3; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .ad-tabs button { white-space: nowrap; flex: 0 0 auto; }
+  .ad-header { padding: 12px 14px; gap: 10px 12px; }
+  .bk-brand { flex: 1 1 auto; }                 /* push Sign out to the right */
+  /* Tabs become a full-width 2x2 grid of big tap targets — no tiny scroller. */
+  .ad-tabs { order: 3; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; flex: none; }
+  .ad-tabs button { width: 100%; text-align: center; padding: 12px 10px; border: 1px solid var(--line); }
   .ad-main { padding: 18px 14px 64px; }
   .ad-stats { grid-template-columns: repeat(2, 1fr); }
   .ad-toolbar { gap: 8px; }
@@ -105,8 +107,15 @@
 
   /* Denser tables so more fits before scrolling. */
   .ad-table th, .ad-table td { padding: 8px 10px; font-size: 13px; }
-  .ad-cal td { min-width: 46px; }
+  .ad-cal th, .ad-cal td { padding: 12px 8px; }
+  .ad-cal td { min-width: 52px; }
+  .ad-cal .cal-avail { font-size: 18px; }
   .ad-stat b { font-size: 26px; }
+
+  /* Bulk bar: inputs and groups flex to full width. */
+  .ad-bulkgroup { flex: 1 1 100%; }
+  .ad-bulkbar input { flex: 1 1 auto; width: auto; }
+  .ad-bulkbar .bk-btn { flex: 0 0 auto; }
 }
 
 @media (max-width: 420px) {

@@ -22,6 +22,22 @@
 /* The `hidden` attribute must always win, even over display:flex/grid rules below. */
 [hidden] { display: none !important; }
 html, body { margin: 0; }
+
+/* ── Blocking loading overlay + spinner ─────────────── */
+.kdn-loading {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+}
+.kdn-spinner {
+  width: 46px; height: 46px; border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.22);
+  border-top-color: #ff3b30;
+  animation: kdnspin .8s linear infinite;
+}
+@keyframes kdnspin { to { transform: rotate(360deg); } }
+
 body {
   font-family: var(--font);
   background: var(--bg);
@@ -148,6 +164,7 @@ input[type="date"] { color-scheme: dark; }
   width: 100%; max-width: 460px; padding: 40px; position: relative;
   background: rgba(18, 18, 18, 0.96); border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px; box-shadow: var(--shadow);
+  max-height: 92vh; overflow-y: auto;   /* tall forms scroll instead of clipping on small phones */
 }
 .bk-close {
   position: absolute; top: 16px; right: 16px; width: 40px; height: 40px;
@@ -184,21 +201,25 @@ input[type="date"] { color-scheme: dark; }
   .bk-hero h1 { font-size: clamp(30px, 9vw, 46px); }
   .bk-hero p { font-size: 16px; line-height: 1.55; }
 
-  /* Dates share a row; Rooms + button go full width (no dead gap). */
+  /* Two fields per row; the search button spans the full width. */
   .bk-search { padding: 16px; }
-  .bk-search-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
-  .bk-search-grid > .bk-field:nth-child(3),
+  .bk-search-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .bk-search-grid > button { grid-column: 1 / -1; }
 
   .bk-results { grid-template-columns: 1fr; gap: 16px; }
   .bk-room img { height: 200px; }
+
+  /* Keep price note + Book button tidy when wrapping. */
+  .bk-room-meta { flex-wrap: wrap; }
+  .bk-price-note { flex: 1 1 100%; }
+  .bk-room-meta .bk-btn { width: 100%; }
 
   .bk-modal { padding: 26px 20px; border-radius: 20px; }
   .bk-modal h3 { font-size: 21px; }
 }
 
 @media (max-width: 420px) {
-  /* Very narrow phones: stack the date fields too. */
+  /* Very narrow phones: one field per row. */
   .bk-search-grid { grid-template-columns: 1fr; }
   .bk-field input, .bk-field select, .bk-btn { font-size: 16px; } /* keep >=16px to avoid iOS zoom */
   .bk-code { font-size: 24px; letter-spacing: 2px; }

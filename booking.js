@@ -5,6 +5,12 @@ let config = null;
 let lastOccupancy = null;            // { units, adults, children5to12, childrenUnder5 }
 let selection = null;                // { room, plan, checkIn, checkOut, occ }
 
+// Blocking loading overlay (counter handles overlapping calls).
+let _busy = 0;
+function showLoading() { _busy++; const el = $('loadingOverlay'); if (el) el.hidden = false; }
+function hideLoading() { _busy = Math.max(0, _busy - 1); const el = $('loadingOverlay'); if (el && _busy === 0) el.hidden = true; }
+async function withLoading(promise) { showLoading(); try { return await promise; } finally { hideLoading(); } }
+
 init();
 
 function fillSelect(el, max, start) {
@@ -65,7 +71,7 @@ async function runSearch() {
 
   const qs = new URLSearchParams({ checkIn, checkOut, ...occ });
   try {
-    const data = await fetch('/api/availability?' + qs).then((r) => r.json());
+    const data = await withLoading(fetch('/api/availability?' + qs).then((r) => r.json()));
     if (data.error) throw new Error(data.error);
     renderResults(data, checkIn, checkOut, occ);
     msg.hidden = true;
@@ -163,7 +169,7 @@ async function onPay(e) {
   const { room, plan, checkIn, checkOut, occ } = selection;
 
   try {
-    const res = await fetch('/api/bookings', {
+    const res = await withLoading(fetch('/api/bookings', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         roomTypeId: room.id, checkIn, checkOut, plan: plan.code,
@@ -171,7 +177,7 @@ async function onPay(e) {
         children5to12: occ.children5to12, childrenUnder5: occ.childrenUnder5,
         guest
       })
-    }).then((r) => r.json());
+    }).then((r) => r.json()));
     if (res.error) throw new Error(res.error);
 
     if (res.mockPayments) {
@@ -214,10 +220,10 @@ function openRazorpay(res, guest) {
 }
 
 async function verify(bookingId, resp) {
-  const out = await fetch('/api/payments/verify', {
+  const out = await withLoading(fetch('/api/payments/verify', {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ ...resp, bookingId })
-  }).then((r) => r.json());
+  }).then((r) => r.json()));
   if (out.status === 'confirmed') {
     $('guestModal').hidden = true;
     $('successCode').textContent = out.code;
