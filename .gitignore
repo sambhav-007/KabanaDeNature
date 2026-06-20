@@ -1,0 +1,5 @@
+node_modules/
+.env
+booking-system/.env
+.vercel
+*.log

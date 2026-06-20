@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin · Kabana de Nature</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/booking.css" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+  <!-- Login -->
+  <div id="login" class="bk-overlay">
+    <form id="loginForm" class="bk-modal bk-card">
+      <h3>Admin sign in</h3>
+      <div class="bk-field"><label>Username</label><input id="luser" value="admin" /></div>
+      <div class="bk-field" style="margin-top:12px"><label>Password</label><input id="lpass" type="password" /></div>
+      <button class="bk-btn bk-btn-primary" style="margin-top:16px;width:100%">Sign in</button>
+      <p id="loginErr" class="bk-fineprint" style="color:#e88"></p>
+    </form>
+  </div>
+
+  <!-- App -->
+  <div id="app" hidden>
+    <header class="ad-header">
+      <div class="bk-brand">Kabana · Admin</div>
+      <nav class="ad-tabs">
+        <button data-tab="dashboard" class="active">Dashboard</button>
+        <button data-tab="bookings">Bookings</button>
+        <button data-tab="calendar">Calendar</button>
+        <button data-tab="rooms">Rooms &amp; Rates</button>
+      </nav>
+      <button id="logout" class="bk-btn bk-btn-ghost">Sign out</button>
+    </header>
+
+    <main class="ad-main">
+      <section id="tab-dashboard" class="ad-tab">
+        <div id="summary" class="ad-stats"></div>
+      </section>
+
+      <section id="tab-bookings" class="ad-tab" hidden>
+        <div class="ad-toolbar">
+          <select id="statusFilter">
+            <option value="">All statuses</option>
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="checked_in">Checked in</option>
+            <option value="checked_out">Checked out</option>
+            <option value="cancelled">Cancelled</option>
+            <option value="expired">Expired</option>
+          </select>
+          <button id="refreshBookings" class="bk-btn">Refresh</button>
+        </div>
+        <div class="ad-table-wrap"><table id="bookingsTable" class="ad-table"></table></div>
+      </section>
+
+      <section id="tab-calendar" class="ad-tab" hidden>
+        <div class="ad-toolbar">
+          <label>From <input type="date" id="calFrom" /></label>
+          <label>To <input type="date" id="calTo" /></label>
+          <button id="loadCal" class="bk-btn">Load</button>
+          <span class="ad-hint">Click, or click-and-drag across cells, to select dates. Then apply changes below.</span>
+        </div>
+
+        <div id="bulkBar" class="ad-bulkbar" hidden>
+          <span id="selCount" class="ad-selcount">0 selected</span>
+          <div class="ad-bulkgroup">
+            <input type="number" id="bulkUnits" min="0" placeholder="Rooms to sell" />
+            <button id="applyUnits" class="bk-btn">Set rooms</button>
+          </div>
+          <div class="ad-bulkgroup">
+            <input type="number" id="bulkPrice" min="0" placeholder="Price ₹" />
+            <button id="applyPrice" class="bk-btn">Set price</button>
+          </div>
+          <button id="applyOpen" class="bk-btn">Open</button>
+          <button id="applyClose" class="bk-btn">Close</button>
+          <button id="resetCells" class="bk-btn">Reset to default</button>
+          <button id="clearSel" class="bk-btn bk-btn-ghost">Clear selection</button>
+        </div>
+
+        <div class="ad-table-wrap"><table id="calTable" class="ad-table ad-cal"></table></div>
+      </section>
+
+      <section id="tab-rooms" class="ad-tab" hidden>
+        <div id="roomsList" class="ad-rooms"></div>
+        <div class="ad-rate-tool bk-card">
+          <h4>Set a nightly rate override</h4>
+          <div class="ad-toolbar">
+            <select id="rateRoom"></select>
+            <input type="date" id="rateDate" />
+            <input type="number" id="ratePrice" placeholder="Price ₹ (blank = clear)" />
+            <button id="setRate" class="bk-btn bk-btn-primary">Apply</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book Your Stay · Kabana de Nature</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/booking.css" />
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+  <header class="bk-header">
+    <div class="bk-brand">Kabana de Nature</div>
+    <a class="bk-back" id="backLink" href="/">← Back to site</a>
+  </header>
+
+  <main class="bk-main">
+    <section class="bk-hero">
+      <h1>Book your stay</h1>
+      <p>Direct booking — best rates, instant confirmation. Set among the pines of Rajgarh.</p>
+    </section>
+
+    <!-- Step 1: search -->
+    <section class="bk-card bk-search">
+      <form id="searchForm" class="bk-search-grid">
+        <div class="bk-field">
+          <label for="checkIn">Check-in</label>
+          <input type="date" id="checkIn" required />
+        </div>
+        <div class="bk-field">
+          <label for="checkOut">Check-out</label>
+          <input type="date" id="checkOut" required />
+        </div>
+        <div class="bk-field">
+          <label for="units">Rooms</label>
+          <select id="units"></select>
+        </div>
+        <div class="bk-field">
+          <label for="adults">Adults</label>
+          <select id="adults"></select>
+        </div>
+        <div class="bk-field">
+          <label for="children5to12">Children (5–12)</label>
+          <select id="children5to12"></select>
+        </div>
+        <div class="bk-field">
+          <label for="childrenUnder5">Children (&lt;5)</label>
+          <select id="childrenUnder5"></select>
+        </div>
+        <button type="submit" class="bk-btn bk-btn-primary">Check availability</button>
+      </form>
+    </section>
+
+    <p id="searchMsg" class="bk-msg" hidden></p>
+
+    <!-- Step 2: results -->
+    <section id="results" class="bk-results" hidden></section>
+
+    <!-- Step 3: guest + pay modal -->
+    <div id="guestModal" class="bk-overlay" hidden>
+      <div class="bk-modal bk-card">
+        <button class="bk-close" id="guestClose" aria-label="Close">×</button>
+        <h3 id="guestTitle">Guest details</h3>
+        <p id="guestSummary" class="bk-summary"></p>
+        <form id="guestForm" class="bk-form">
+          <div class="bk-field"><label for="gName">Full name</label><input id="gName" required /></div>
+          <div class="bk-field"><label for="gPhone">Phone</label><input id="gPhone" type="tel" required placeholder="+91…" /></div>
+          <div class="bk-field"><label for="gEmail">Email (optional)</label><input id="gEmail" type="email" /></div>
+          <button type="submit" class="bk-btn bk-btn-primary" id="payBtn">Pay & confirm</button>
+          <p class="bk-fineprint" id="payNote"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Success -->
+    <div id="successModal" class="bk-overlay" hidden>
+      <div class="bk-modal bk-card bk-success">
+        <div class="bk-tick">✓</div>
+        <h3>Booking confirmed</h3>
+        <p>Your confirmation code is</p>
+        <div class="bk-code" id="successCode"></div>
+        <p class="bk-fineprint">A confirmation will be sent to you. We can't wait to host you.</p>
+        <a href="/book.html" class="bk-btn bk-btn-ghost">Make another booking</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="/booking.js"></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+/* Booking + admin UI — matched to the Kabana de Nature site design system. */
+:root {
+  --bg: #0b0b0b;
+  --panel: rgba(255, 255, 255, 0.03);
+  --panel-2: rgba(255, 255, 255, 0.06);
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.12);
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.78);
+  --faint: rgba(255, 255, 255, 0.55);
+  --accent: #ff3b30;
+  --accent-hover: #e03228;
+  --gold: #f4c542;          /* matches site review stars; used for pending / low states */
+  --green: #6fae7d;
+  --radius: 16px;
+  --shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, Inter, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Inter, system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+/* The `hidden` attribute must always win, even over display:flex/grid rules below. */
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+*:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* ── Header ─────────────────────────────────────────── */
+.bk-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 28px; border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(11, 11, 11, 0.75);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+}
+.bk-brand { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.01em; font-size: 18px; }
+.bk-back { color: var(--muted); text-decoration: none; font-size: 15px; font-weight: 600; opacity: .88; transition: opacity .2s ease; }
+.bk-back:hover { opacity: 1; }
+
+.bk-main { max-width: 1100px; margin: 0 auto; padding: 40px 24px 90px; }
+.bk-hero { text-align: center; margin: 20px 0 36px; }
+.bk-hero h1 {
+  font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em;
+  font-size: clamp(34px, 6vw, 64px); margin: 0 0 14px; line-height: 1.02;
+}
+.bk-hero p { color: var(--muted); margin: 0 auto; max-width: 54ch; font-size: 18px; line-height: 1.6; }
+
+/* ── Cards ──────────────────────────────────────────── */
+.bk-card {
+  background: rgba(18, 18, 18, 0.92);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.25);
+}
+
+.bk-search { padding: 22px; margin-bottom: 26px; }
+.bk-search-grid { display: grid; gap: 16px; grid-template-columns: 1fr 1fr 0.6fr auto; align-items: end; }
+
+.bk-field { display: flex; flex-direction: column; gap: 8px; }
+.bk-field label { font-size: 14px; color: var(--muted); }
+.bk-field input, .bk-field select {
+  width: 100%; padding: 12px 16px; border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.03);
+  color: var(--text); font-family: inherit; font-size: 16px;
+  transition: border-color .2s ease, background .2s ease;
+}
+.bk-field input:focus, .bk-field select:focus { outline: none; border-color: var(--accent); background: rgba(255, 255, 255, 0.06); }
+.bk-field select { appearance: none; cursor: pointer; }
+.bk-field select option { background: #111; color: var(--text); }
+input[type="date"] { color-scheme: dark; }
+
+/* ── Buttons ────────────────────────────────────────── */
+.bk-btn {
+  border: none; border-radius: 12px; padding: 13px 22px;
+  font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer;
+  color: var(--text); background: rgba(255, 255, 255, 0.06);
+  transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+  text-decoration: none; display: inline-block; text-align: center;
+}
+.bk-btn:hover { transform: translateY(-2px); }
+.bk-btn-primary { background: var(--accent); color: #fff; box-shadow: 0 6px 18px rgba(255, 59, 48, 0.18); }
+.bk-btn-primary:hover { background: var(--accent-hover); box-shadow: 0 12px 30px rgba(255, 59, 48, 0.28); }
+.bk-btn-ghost { background: transparent; border: 2px solid rgba(255, 255, 255, 0.12); border-radius: 999px; }
+.bk-btn-ghost:hover { background: rgba(255, 255, 255, 0.08); }
+.bk-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.bk-msg { text-align: center; color: var(--muted); padding: 12px; }
+.bk-msg.error { color: #ff7a72; }
+
+/* ── Room results ───────────────────────────────────── */
+.bk-results { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.bk-room {
+  background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px; overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
+  transition: transform .3s cubic-bezier(.16,1,.3,1), background .3s ease, border-color .3s ease;
+}
+.bk-room:hover { transform: translateY(-6px); background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.15); }
+.bk-room img { width: 100%; height: 200px; object-fit: cover; display: block; }
+.bk-room-body { padding: 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.bk-room h3 { margin: 0; font-size: 20px; font-weight: 700; font-family: var(--font-display); }
+.bk-room p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.6; }
+.bk-specs { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--faint); font-size: 13px; }
+.bk-spec { position: relative; }
+.bk-spec:not(:last-child)::after { content: "·"; position: absolute; right: -9px; }
+.bk-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.bk-chip {
+  font-size: 12px; color: var(--muted); background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; white-space: nowrap;
+}
+/* Meal-plan selector */
+.bk-plans { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.bk-plan {
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+  padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02); transition: border-color .2s ease, background .2s ease;
+}
+.bk-plan:hover { border-color: rgba(255, 255, 255, 0.22); }
+.bk-plan input { accent-color: var(--accent); margin: 0; }
+.bk-plan:has(input:checked) { border-color: var(--accent); background: rgba(255, 59, 48, 0.08); }
+.bk-plan-info { display: flex; flex-direction: column; gap: 1px; flex: 1; min-width: 0; }
+.bk-plan-name { font-size: 14px; font-weight: 600; }
+.bk-plan-code { font-size: 11px; color: var(--faint); letter-spacing: .5px; }
+.bk-plan-price { font-size: 16px; font-weight: 800; font-family: var(--font-display); white-space: nowrap; }
+
+.bk-price-note { color: var(--faint); font-size: 13px; }
+.bk-room-meta { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 10px; gap: 12px; }
+.bk-price b { font-size: 24px; font-weight: 800; color: var(--text); font-family: var(--font-display); letter-spacing: -0.01em; }
+.bk-price span { color: var(--faint); font-size: 13px; display: block; margin-top: 2px; }
+.bk-avail { font-size: 13px; color: var(--green); font-weight: 600; }
+.bk-avail.none { color: #ff7a72; }
+.bk-soldout { opacity: .55; }
+
+/* ── Overlays & modals ──────────────────────────────── */
+.bk-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+}
+.bk-modal {
+  width: 100%; max-width: 460px; padding: 40px; position: relative;
+  background: rgba(18, 18, 18, 0.96); border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px; box-shadow: var(--shadow);
+}
+.bk-close {
+  position: absolute; top: 16px; right: 16px; width: 40px; height: 40px;
+  display: grid; place-items: center; border: none; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08); color: var(--text); font-size: 22px; cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+.bk-close:hover { background: rgba(255, 255, 255, 0.16); transform: scale(1.05); }
+.bk-modal h3 { margin: 0 0 8px; font-size: 24px; font-family: var(--font-display); font-weight: 800; }
+.bk-summary { color: var(--muted); font-size: 15px; margin: 0 0 22px; line-height: 1.5; }
+.bk-form { display: flex; flex-direction: column; gap: 16px; }
+.bk-form .bk-btn-primary { width: 100%; padding: 15px; }
+.bk-fineprint { font-size: 13px; color: var(--faint); text-align: center; margin: 6px 0 0; line-height: 1.5; }
+
+.bk-success { text-align: center; }
+.bk-tick {
+  width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 16px;
+  display: grid; place-items: center; font-size: 32px;
+  background: rgba(111, 174, 125, 0.16); color: var(--green);
+}
+.bk-code {
+  font-family: var(--font-display); font-size: 28px; font-weight: 800; letter-spacing: 3px;
+  color: var(--accent); background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 59, 48, 0.5); border-radius: 12px;
+  padding: 14px; margin: 12px 0 16px;
+}
+
+@media (max-width: 680px) {
+  .bk-header { padding: 12px 16px; }
+  .bk-brand { font-size: 16px; }
+  .bk-back { font-size: 14px; }
+  .bk-main { padding: 24px 16px 64px; }
+  .bk-hero { margin: 12px 0 26px; }
+  .bk-hero h1 { font-size: clamp(30px, 9vw, 46px); }
+  .bk-hero p { font-size: 16px; line-height: 1.55; }
+
+  /* Dates share a row; Rooms + button go full width (no dead gap). */
+  .bk-search { padding: 16px; }
+  .bk-search-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .bk-search-grid > .bk-field:nth-child(3),
+  .bk-search-grid > button { grid-column: 1 / -1; }
+
+  .bk-results { grid-template-columns: 1fr; gap: 16px; }
+  .bk-room img { height: 200px; }
+
+  .bk-modal { padding: 26px 20px; border-radius: 20px; }
+  .bk-modal h3 { font-size: 21px; }
+}
+
+@media (max-width: 420px) {
+  /* Very narrow phones: stack the date fields too. */
+  .bk-search-grid { grid-template-columns: 1fr; }
+  .bk-field input, .bk-field select, .bk-btn { font-size: 16px; } /* keep >=16px to avoid iOS zoom */
+  .bk-code { font-size: 24px; letter-spacing: 2px; }
+}
