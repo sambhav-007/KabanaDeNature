@@ -39,6 +39,7 @@ async function ensureSetup(db) {
         size_sqm: 15, bed_config: '1 large double bed',
         amenities: ['Balcony', 'Garden view', 'Mountain view', 'Patio', 'Free WiFi'],
         base_price: 400000, max_occupancy: 2, total_units: 3,
+        images: ['/images/image1.webp', '/images/image3.webp', '/images/image8.webp', '/images/Cottages%20at%20Night1.webp'],
         image_url: '/images/image1.webp', cm_room_id: null, active: true
       },
       {
@@ -47,6 +48,7 @@ async function ensureSetup(db) {
         size_sqm: 23, bed_config: '2 single beds & 1 double bed',
         amenities: ['Balcony', 'Garden view', 'Mountain view', 'Patio', 'Private bathroom', 'Free WiFi'],
         base_price: 750000, max_occupancy: 4, total_units: 9,
+        images: ['/images/image2.webp', '/images/image4.webp', '/images/image5.webp', '/images/image6.webp'],
         image_url: '/images/image2.webp', cm_room_id: null, active: true
       }
     ]);

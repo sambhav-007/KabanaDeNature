@@ -44,6 +44,7 @@ function publicRoom(room) {
     beds: room.bed_config,
     amenities: room.amenities || [],
     image: room.image_url,
+    images: (room.images && room.images.length) ? room.images : [room.image_url].filter(Boolean),
     basePriceDisplay: (room.base_price / 100).toFixed(0)
   };
 }

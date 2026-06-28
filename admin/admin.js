@@ -38,6 +38,11 @@ async function boot() {
   $('refreshBookings').addEventListener('click', loadBookings);
   $('statusFilter').addEventListener('change', loadBookings);
   $('loadCal').addEventListener('click', loadCalendar);
+  // Auto-load the calendar when either date changes (no need to click Load).
+  ['calFrom', 'calTo'].forEach((id) => $(id).addEventListener('change', () => {
+    const from = $('calFrom').value, to = $('calTo').value;
+    if (from && to && to > from) loadCalendar();
+  }));
   $('setRate').addEventListener('click', setRate);
 
   // Calendar bulk actions

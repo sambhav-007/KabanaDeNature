@@ -38,7 +38,12 @@ async function init() {
     const next = new Date(new Date(ci.value).getTime() + 86400000).toISOString().slice(0, 10);
     co.min = next;
     if (co.value <= ci.value) co.value = next;
+    runSearch();
   });
+  co.addEventListener('change', runSearch);
+  // Auto-check availability when guest counts change too.
+  ['units', 'adults', 'children5to12', 'childrenUnder5'].forEach((id) =>
+    $(id).addEventListener('change', runSearch));
 
   $('searchForm').addEventListener('submit', onSearch);
   $('guestClose').addEventListener('click', () => ($('guestModal').hidden = true));
@@ -116,8 +121,17 @@ function renderResults(data, checkIn, checkOut, occ) {
           </label>`).join('')}
       </div>` : '';
 
+    const images = (room.images && room.images.length) ? room.images : [room.image];
+    const slides = images.map((src, i) =>
+      `<img src="${src}" alt="${room.name}" class="bk-slide${i === 0 ? ' active' : ''}" loading="lazy" onerror="this.style.display='none'" />`).join('');
+    const dots = images.length > 1
+      ? `<div class="bk-dots">${images.map((_, i) => `<span class="bk-dot${i === 0 ? ' active' : ''}"></span>`).join('')}</div>` : '';
+    const nav = images.length > 1
+      ? `<button type="button" class="bk-gal-nav prev" aria-label="Previous image">‹</button>
+         <button type="button" class="bk-gal-nav next" aria-label="Next image">›</button>` : '';
+
     card.innerHTML = `
-      <img src="${room.image}" alt="${room.name}" loading="lazy" onerror="this.style.display='none'" />
+      <div class="bk-gallery" data-idx="0">${slides}${nav}${dots}</div>
       <div class="bk-room-body">
         <h3>${room.name}</h3>
         <div class="bk-specs">${specs}</div>
@@ -131,8 +145,10 @@ function renderResults(data, checkIn, checkOut, occ) {
         </div>
       </div>`;
 
+    wireGallery(card.querySelector('.bk-gallery'), images.length);
+
     if (enough) {
-      card.querySelector('button').addEventListener('click', () => {
+      card.querySelector('.bk-room-meta .bk-btn-primary').addEventListener('click', () => {
         const chosen = card.querySelector(`input[name="plan-${room.id}"]:checked`).value;
         const plan = room.plans.find((p) => p.code === chosen);
         openGuest(room, plan, checkIn, checkOut, occ);
@@ -141,6 +157,32 @@ function renderResults(data, checkIn, checkOut, occ) {
     wrap.appendChild(card);
   });
   wrap.hidden = false;
+}
+
+function wireGallery(gallery, count) {
+  if (!gallery || count <= 1) return;
+  const slides = gallery.querySelectorAll('.bk-slide');
+  const dots = gallery.querySelectorAll('.bk-dot');
+  const show = (n) => {
+    const idx = (n + count) % count;
+    gallery.dataset.idx = idx;
+    slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  };
+  const cur = () => parseInt(gallery.dataset.idx, 10);
+  gallery.querySelector('.prev').addEventListener('click', (e) => { e.stopPropagation(); show(cur() - 1); });
+  gallery.querySelector('.next').addEventListener('click', (e) => { e.stopPropagation(); show(cur() + 1); });
+  dots.forEach((d, i) => d.addEventListener('click', (e) => { e.stopPropagation(); show(i); }));
+
+  // Swipe on touch devices.
+  let x0 = null;
+  gallery.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  gallery.addEventListener('touchend', (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) show(cur() + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
 }
 
 function openGuest(room, plan, checkIn, checkOut, occ) {
