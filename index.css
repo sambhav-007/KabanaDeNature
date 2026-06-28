@@ -551,6 +551,73 @@ p.lead { margin: 0; color: var(--muted); max-width: 62ch; font-size: 18px; line-
 .footer-copy { font-size: 0.95rem; color: rgba(255,255,255,0.72); transition: color .2s ease; }
 .site-footer a.footer-logo:hover .footer-copy { color: var(--white); }
 
+/* ---------- Intro curtain preloader (lifts away) ---------- */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #0b0b0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  animation: preloaderLift .8s cubic-bezier(.76, 0, .24, 1) 2s forwards;
+}
+.preloader.is-done { display: none; }
+@keyframes preloaderLift {
+  to { transform: translateY(-100%); visibility: hidden; }
+}
+.preloader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+  opacity: 0;
+  transform: scale(.92);
+  animation: preloaderIn .8s cubic-bezier(.22, 1, .36, 1) .15s forwards;
+}
+@keyframes preloaderIn { to { opacity: 1; transform: scale(1); } }
+.preloader-logo { position: relative; overflow: hidden; }
+.preloader-logo img { display: block; height: 80px; width: auto; object-fit: contain; }
+.preloader-logo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, .45) 50%, transparent 65%);
+  transform: translateX(-130%);
+  animation: preloaderShimmer 1.5s ease-in-out .55s 1 forwards;
+}
+@keyframes preloaderShimmer { to { transform: translateX(130%); } }
+.preloader-rule {
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+  animation: preloaderRule .7s cubic-bezier(.22, 1, .36, 1) .6s forwards;
+}
+@keyframes preloaderRule { to { width: 120px; } }
+.preloader-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .45rem;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: preloaderTag .6s ease .95s forwards;
+}
+@keyframes preloaderTag { to { opacity: 1; transform: translateY(0); } }
+.preloader-tag-main {
+  font-size: .72rem; letter-spacing: .32em; text-transform: uppercase;
+  color: var(--white); font-weight: 600;
+}
+.preloader-tag-sub {
+  font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(255, 255, 255, .6);
+}
+@media (prefers-reduced-motion: reduce) {
+  .preloader { display: none; }
+}
+
 /* Animations */
 @keyframes blurSegmentIn {
   0% { opacity: 0; transform: translateY(-18px) scale(0.985); filter: blur(10px); }

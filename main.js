@@ -19,12 +19,42 @@ const galleryData = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
+  initPreloader();
   initHeroVideo();
   initGallery();
   initModals();
   initAnimations();
   initNavigation();
 });
+
+// Intro curtain: lock scroll while the black overlay is up, then remove it once
+// it has lifted away. CSS drives the lift, so it still works if JS is slow.
+function initPreloader() {
+  const pre = document.getElementById('preloader');
+  if (!pre) return;
+
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { pre.remove(); return; }
+
+  const root = document.documentElement;
+  const prevHtml = root.style.overflow;
+  const prevBody = document.body.style.overflow;
+  root.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+
+  const cleanup = () => {
+    pre.classList.add('is-done');
+    root.style.overflow = prevHtml;
+    document.body.style.overflow = prevBody;
+    pre.remove();
+  };
+
+  // Lift animation: 2s delay + 0.8s duration ≈ 2.8s. Clean up when it ends (with a fallback).
+  pre.addEventListener('animationend', (e) => {
+    if (e.animationName === 'preloaderLift') cleanup();
+  }, { once: true });
+  setTimeout(cleanup, 3200);
+}
 
 function initHeroVideo() {
   const video = document.querySelector('.hero-video');
